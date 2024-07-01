@@ -4,12 +4,12 @@ library(rhdf5)
 library(ggplot2)
 
 dirD <- "K:/Environmental_Studies/hkropp/projects/AK_neon"
-
+dirD <- "/Users/hkropp/Documents/offline/Healy"
 
 zipsByProduct(dpID="DP4.00200.001", package="expanded", 
               site=c("HEAL"),
-              startdate="2018-06", enddate="2018-06",
-              savepath=paste0(dirD,"/06_2018"), 
+              startdate="2018-05", enddate="2018-09",
+              savepath=paste0(dirD,"/flux"), 
               check.size=F)
 
 flux <- stackEddy(filepath=paste0(dirD,"/06_2018/filesToStack00200"),
