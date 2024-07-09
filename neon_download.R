@@ -31,3 +31,13 @@ fluxJ <- stackEddy(filepath=paste0(dirD,"/07_2018/filesToStack00200"),
 fluxDFJ <- fluxJ$HEAL
 fluxVarJ <- fluxJ$variables
 fluxLog <- fluxJ
+
+
+zipsByProduct(dpID="DP1.00041.001", package="basic", 
+              site=c("HEAL"),timeIndex=30,
+              startdate="2017-05", enddate="2024-05",
+              savepath="/Users/hkropp/Documents/offline/Healy", 
+              check.size=T)
+loadByProduct(dpID="DP1.00041.001", package="basic", 
+              site=c("HEAL"),timeIndex=30,
+              startdate="2017-05", enddate="2024-05")
