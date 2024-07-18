@@ -57,3 +57,30 @@ for( i in 1:length(files23)){
   chm23[[i]] <- rasterize_canopy(nlas, 0.5, pitfree(subcircle = 0.2))
   print(paste("finish", i, files23[i]))
 }
+
+
+dtm_all23 <- do.call("merge", dtm_tin23)
+chm_all23 <- do.call("merge", chm23)
+plot(dtm_all23)
+plot(chm_all23)
+chm_q23 <- ifel(chm_all23 > 30, NA, chm_all23)
+plot(chm_q23)
+
+writeRaster(chm_q23, paste0(dirSave, "/chm_23.tif"))
+writeRaster(dtm_all23, paste0(dirSave, "dtm_23.tif"))
+
+chm_q <- rast( paste0(dirSave, "/chm_17.tif"))
+dtm_all <- rast( paste0(dirSave, "/mapsdtm_17.tif"))
+res(dtm_all23)
+dtm_23r <- resample(dtm_all23, dtm_all)
+chm_23r <- resample(chm_q23, chm_q)
+dtm_23p <- project(dtm_23r, dtm_all)
+chm_23p <- project(chm_23r, chm_q)
+
+dtmC <- dtm_23p - dtm_all 
+chmC <- chm_23p - chm_q
+
+plot(dtmC)
+zoom()
+plot(chmC)
+
