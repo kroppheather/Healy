@@ -84,3 +84,18 @@ plot(dtmC)
 zoom()
 plot(chmC)
 
+fl <- rast("E:/drone/ak/flight_7_5_1nogcp/flight_7_5_24_1_transparent_mosaic_group1.tif")
+plot(fl)
+plotRGB(fl)
+fl2 <- rast("E:/drone/ak/maps/flight_7_5_2_gr.tif")
+plotRGB(fl2)
+# downsample
+
+
+f1 <- rast("E:/drone/ak/img24/flight_7_5_24_1_transparent_mosaic_group1.tif")
+plotRGB(f1)
+makeTiles(f1,c(35000,35000), "E:/drone/ak/maps24_geo/flight1_tile/f7_5_24_1.tif")
+
+rast1 <- rast(ext(f1), resolution=c(0.05,0.05))
+crs(rast1) <- crs(f1)
+f1rs <- resample(f1, rast1, datatype="INT1U")
